@@ -13,8 +13,7 @@ export const Header = (props) => {
           <h3 className="title">Banking System</h3>
         </Link>
 
-        <Link
-          role="button"
+        <button
           className="navbar-burger"
           aria-label="menu"
           aria-expanded="false"
@@ -24,7 +23,7 @@ export const Header = (props) => {
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </Link>
+        </button>
       </div>
 
       <div id="navigation-bar" className="navbar-menu">
@@ -33,14 +32,18 @@ export const Header = (props) => {
             Home
           </Link>
 
-          <Link className="navbar-item" to='/custom-details'>Customers Details</Link>
+          <Link className="navbar-item" to="/custom-details">
+            Customers Details
+          </Link>
 
           <div className="navbar-item has-dropdown is-hoverable">
-            <Link className="navbar-link">More</Link>
+            <div className="navbar-link">More</div>
 
             <div className="navbar-dropdown">
-              <Link className="navbar-item" to='/transaction-statements'>Transaction History</Link>
-              <Link className="navbar-item">About</Link>
+              <Link className="navbar-item" to="/transaction-statements">
+                Transaction History
+              </Link>
+              <Link className="navbar-item" to="/about">About</Link>
               <hr className="navbar-divider" />
             </div>
           </div>
