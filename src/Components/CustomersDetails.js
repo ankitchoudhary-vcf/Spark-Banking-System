@@ -1,7 +1,7 @@
 import React from "react";
-import { Details } from './Details'
+import { Details } from "./Details";
 
-export const CustomersDetails = () => {
+export const CustomersDetails = (props) => {
   return (
     <>
       <div className="mt-6 notification mx-2 is-success is-light title has-text-centered">
@@ -32,12 +32,20 @@ export const CustomersDetails = () => {
               </h3>
             </div>
           </div>
-          <hr className="has-background-dark"/>
-          <hr className="has-background-dark"/>
+          <hr className="has-background-dark" />
+          <hr className="has-background-dark" />
         </div>
 
-        <Details/>
-
+        {props.customersDetails.length === 0 ? (
+          <div className="has-background-danger column is-12 has-text-centered title is-size-6-touch is-size-4-desktop">
+            {" "}
+            No Data to Display{" "}
+          </div>
+        ) : (
+          props.customersDetails.map((customer) => {
+            return <Details key={customer.id} customer={customer} />;
+          })
+        )}
       </div>
     </>
   );
