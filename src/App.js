@@ -13,7 +13,7 @@ function App() {
   //customersDetails
   const [customersDetails, setCustomersDetails] = useState([]);
 
-  //loading the customersDetails
+  //fetching the customersDetails
   useEffect(() => {
     async function fetchCustomersDetails() {
       try {
@@ -25,6 +25,22 @@ function App() {
     }
     fetchCustomersDetails();
   }, [customersDetails]);
+
+  //transactionDetails
+  const [transactionDetails, setTransactionDetails] = useState([]);
+
+  //fetching the transaction details
+  useEffect(() => {
+    async function fetchTransactionDetails() {
+      try {
+        const transactionData = await axios.get("http://localhost:8080/transactions");
+        setTransactionDetails(transactionData.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchTransactionDetails();
+  }, [transactionDetails]);
 
   // Burger event handler
   const handleBurger = (e) => {
@@ -45,7 +61,7 @@ function App() {
             <CustomersDetails customersDetails={customersDetails} />
           </Route>
           <Route exact path="/transaction-statements">
-            <TransactionHistory />
+            <TransactionHistory transactionDetails={transactionDetails} />
           </Route>
         </Switch>
         <Footer />
