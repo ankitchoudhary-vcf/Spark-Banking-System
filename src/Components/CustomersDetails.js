@@ -43,7 +43,7 @@ export const CustomersDetails = (props) => {
           </div>
         ) : (
           props.customersDetails.map((customer) => {
-            return <Details key={customer.id} customer={customer} />;
+            return <Details key={customer._id} customer={customer} />;
           })
         )}
       </div>
