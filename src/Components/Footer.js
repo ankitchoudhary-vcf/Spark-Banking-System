@@ -9,7 +9,7 @@ export const Footer = () => {
 
   return (
     <footer className="footer has-background-dark" style={footerStyle}>
-      <div class="content has-text-centered has-text-white">
+      <div className="content has-text-centered has-text-white">
         <p>
           <strong className="has-text-white">Banking System</strong> created by{" "}
           <a href="https://github.com/ankit1509">Ankit Choudhary</a>.
