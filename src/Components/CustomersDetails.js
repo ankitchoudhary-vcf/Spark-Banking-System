@@ -11,23 +11,23 @@ export const CustomersDetails = (props) => {
       <div className="columns notification is-light mx-2 is-mobile is-multiline">
         <div className="column is-12">
           <div className="columns notification has-text-centered is-mobile is-dark p-0">
-            <div className="column is-3">
-              <h3 className="title is-size-5-touch is-size-3-desktop">
+            <div className="column is-3 px-0">
+              <h3 className="title is-size-6-touch is-size-3-desktop">
                 Account No.
               </h3>
             </div>
-            <div className="column is-3">
-              <h3 className="title is-size-5-touch is-size-3-desktop">
+            <div className="column is-3 px-0">
+              <h3 className="title is-size-6-touch is-size-3-desktop">
                 Account Holder Name
               </h3>
             </div>
-            <div className="column is-3">
-              <h3 className="title is-size-5-touch is-size-3-desktop">
+            <div className="column is-3 px-0">
+              <h3 className="title is-size-6-touch is-size-3-desktop">
                 Email-ID
               </h3>
             </div>
-            <div className="column is-3">
-              <h3 className="title is-size-5-touch is-size-3-desktop">
+            <div className="column is-3 px-0">
+              <h3 className="title is-size-6-touch is-size-3-desktop">
                 Balance
               </h3>
             </div>
@@ -43,7 +43,7 @@ export const CustomersDetails = (props) => {
           </div>
         ) : (
           props.customersDetails.map((customer) => {
-            return <Details key={customer._id} customer={customer} />;
+            return <Details key={customer._id} customer={customer} setCurrentCustomer={props.setCurrentCustomer} currentCustomer={props.currentCustomer} />;
           })
         )}
       </div>
