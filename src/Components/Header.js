@@ -32,7 +32,7 @@ export const Header = (props) => {
             Home
           </Link>
 
-          <Link className="navbar-item" to="/custom-details">
+          <Link className="navbar-item" to="/customs-details">
             Customers Details
           </Link>
 
@@ -40,11 +40,12 @@ export const Header = (props) => {
             <div className="navbar-link">More</div>
 
             <div className="navbar-dropdown">
+            <Link className="navbar-item" to="/transfer-amount">Transfer Amount</Link>
               <Link className="navbar-item" to="/transaction-statements">
                 Transaction History
               </Link>
-              <Link className="navbar-item" to="/about">About</Link>
               <hr className="navbar-divider" />
+              <Link className="navbar-item" to="/about">About</Link>
             </div>
           </div>
         </div>
