@@ -7,8 +7,9 @@ export const TransactionHistory = (props) => {
     const [statements, setStatements] = useState([]);
 
     useEffect(() =>{
+
         function filteredStatements(data){
-            return data.Status === "Created"
+            return data.Status === "Credited"
         }
 
         async function Statements() {
@@ -27,16 +28,16 @@ export const TransactionHistory = (props) => {
       <div className="columns notification is-light mx-2 is-mobile is-multiline">
         <div className="column is-12">
           <div className="columns notification has-text-centered is-mobile is-dark p-0">
-            <div className="column is-3">
-              <h3 className="title is-size-5-touch is-size-3-desktop">Date</h3>
+            <div className="column is-3 px-0">
+              <h3 className="title is-size-6-touch is-size-3-desktop">Date</h3>
             </div>
-            <div className="column is-6">
-              <h3 className="title is-size-5-touch is-size-3-desktop">
+            <div className="column is-6 px-0">
+              <h3 className="title is-size-6-touch is-size-3-desktop">
                 Description
               </h3>
             </div>
-            <div className="column is-3">
-              <h3 className="title is-size-5-touch is-size-3-desktop">Amount</h3>
+            <div className="column is-3 px-0">
+              <h3 className="title is-size-6-touch is-size-3-desktop">Amount</h3>
             </div>
           </div>
           <hr className="has-background-dark" />
