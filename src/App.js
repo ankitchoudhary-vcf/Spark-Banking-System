@@ -6,6 +6,7 @@ import { CustomersDetails } from "./Components/CustomersDetails";
 import { TransactionHistory } from "./Components/TransactionHistory";
 import { TransferAmount } from "./Components/TransferAmount";
 import { CustomerDetail } from "./Components/CustomerDetail";
+import { About } from "./Components/About";
 import "bulma/css/bulma.min.css";
 import { HashRouter, Switch, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -267,6 +268,9 @@ function App() {
               transactionDetails={transactionDetails}
               setTransfer={setTransfer}
             />
+          </Route>
+          <Route exact path="/about">
+          <About/>
           </Route>
         </Switch>
         <Footer />
