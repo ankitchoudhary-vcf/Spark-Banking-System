@@ -2,7 +2,7 @@ import React from "react";
 
 export const Home = () => {
   return (
-    <div className="columns notification m-2 mt-6 is-warning is-light is-centered is-vcentered is-mobile is-box">
+    <div className="columns notification m-2 mt-6 is-warning is-light is-centered is-vcentered is-box">
       <div className="column is-6 is-block mr-2">
         <p className="title is-size-3-touch is-size-1-desktop has-text-centered">
           Welcome to the Banking System
