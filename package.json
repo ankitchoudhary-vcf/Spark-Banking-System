@@ -1,7 +1,7 @@
 {
   "name": "banking_system",
   "version": "0.1.0",
-  "homepage": "https://github.com/ankit1509/Banking_System/",
+  "homepage": "https://ankit1509.github.io/Spark-Banking-System/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
