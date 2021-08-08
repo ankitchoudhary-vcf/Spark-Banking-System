@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     async function fetchCustomersDetails() {
       try {
-        const data = await axios.get("http://localhost:8080/customers");
+        const data = await axios.get("https://banking-server.herokuapp.com/customers");
         setCustomersDetails(data.data);
       } catch (err) {
         console.log(err);
@@ -36,7 +36,7 @@ function App() {
     async function fetchTransactionDetails() {
       try {
         const transactionData = await axios.get(
-          "http://localhost:8080/transactions"
+          "https://banking-server.herokuapp.com/transactions"
         );
         setTransactionDetails(transactionData.data);
       } catch (err) {
@@ -178,14 +178,14 @@ function App() {
 
     try {
       const transfer = await axios.put(
-        `http://localhost:8080/customers/${data.from}&${data.to}`,
+        `https://banking-server.herokuapp.com/customers/${data.from}&${data.to}`,
         {
           amount: data.amount,
         }
       );
       if (transfer.status === 200 && !transfer.data.message) {
         const response = await axios.post(
-          "http://localhost:8080/transactions",
+          "https://banking-server.herokuapp.com/transactions",
           data
         );
         if (response.status === 200) {
