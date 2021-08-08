@@ -1,1 +1,5 @@
 
+.is-hover:hover {
+    cursor: pointer;
+    color: #209cee;
+}
