@@ -223,17 +223,10 @@ function App() {
     }
   }, [transfer]);
 
-  // Burger event handler
-  const handleBurger = (e) => {
-    var navbar = document.querySelector("#" + e.target.dataset.target);
-    navbar.classList.toggle("is-active");
-    e.target.classList.toggle("is-active");
-  };
-
   return (
     <>
       <HashRouter>
-        <Header handleBurger={handleBurger} />
+        <Header/>
         <Switch>
           <Route exact path="/">
             <Home />
