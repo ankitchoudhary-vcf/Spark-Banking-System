@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/ankit1509/Banking_System/static/css/main.ad398169.chunk.css",
-    "main.js": "/ankit1509/Banking_System/static/js/main.d43293c5.chunk.js",
-    "main.js.map": "/ankit1509/Banking_System/static/js/main.d43293c5.chunk.js.map",
-    "runtime-main.js": "/ankit1509/Banking_System/static/js/runtime-main.7103ad02.js",
-    "runtime-main.js.map": "/ankit1509/Banking_System/static/js/runtime-main.7103ad02.js.map",
-    "static/css/2.41953c31.chunk.css": "/ankit1509/Banking_System/static/css/2.41953c31.chunk.css",
-    "static/js/2.1c5a4759.chunk.js": "/ankit1509/Banking_System/static/js/2.1c5a4759.chunk.js",
-    "static/js/2.1c5a4759.chunk.js.map": "/ankit1509/Banking_System/static/js/2.1c5a4759.chunk.js.map",
-    "index.html": "/ankit1509/Banking_System/index.html",
-    "static/css/2.41953c31.chunk.css.map": "/ankit1509/Banking_System/static/css/2.41953c31.chunk.css.map",
-    "static/css/main.ad398169.chunk.css.map": "/ankit1509/Banking_System/static/css/main.ad398169.chunk.css.map",
-    "static/js/2.1c5a4759.chunk.js.LICENSE.txt": "/ankit1509/Banking_System/static/js/2.1c5a4759.chunk.js.LICENSE.txt"
+    "main.css": "/Spark-Banking-System/static/css/main.ad398169.chunk.css",
+    "main.js": "/Spark-Banking-System/static/js/main.d43293c5.chunk.js",
+    "main.js.map": "/Spark-Banking-System/static/js/main.d43293c5.chunk.js.map",
+    "runtime-main.js": "/Spark-Banking-System/static/js/runtime-main.84b21c6f.js",
+    "runtime-main.js.map": "/Spark-Banking-System/static/js/runtime-main.84b21c6f.js.map",
+    "static/css/2.41953c31.chunk.css": "/Spark-Banking-System/static/css/2.41953c31.chunk.css",
+    "static/js/2.1c5a4759.chunk.js": "/Spark-Banking-System/static/js/2.1c5a4759.chunk.js",
+    "static/js/2.1c5a4759.chunk.js.map": "/Spark-Banking-System/static/js/2.1c5a4759.chunk.js.map",
+    "index.html": "/Spark-Banking-System/index.html",
+    "static/css/2.41953c31.chunk.css.map": "/Spark-Banking-System/static/css/2.41953c31.chunk.css.map",
+    "static/css/main.ad398169.chunk.css.map": "/Spark-Banking-System/static/css/main.ad398169.chunk.css.map",
+    "static/js/2.1c5a4759.chunk.js.LICENSE.txt": "/Spark-Banking-System/static/js/2.1c5a4759.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.7103ad02.js",
+    "static/js/runtime-main.84b21c6f.js",
     "static/css/2.41953c31.chunk.css",
     "static/js/2.1c5a4759.chunk.js",
     "static/css/main.ad398169.chunk.css",
