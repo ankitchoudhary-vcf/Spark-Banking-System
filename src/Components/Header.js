@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-export const Header = (props) => {
+export const Header = () => {
+  const[isActive, setIsActive] = useState(false);
   return (
     <nav
       className="navbar has-background-warning"
@@ -14,11 +16,11 @@ export const Header = (props) => {
         </Link>
 
         <button
-          className="navbar-burger"
+          className={isActive ? "navbar-burger is-active" : "navbar-burger"}
           aria-label="menu"
           aria-expanded="false"
           data-target="navigation-bar"
-          onClick={props.handleBurger}
+          onClick={() => setIsActive(!isActive)}
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -26,7 +28,7 @@ export const Header = (props) => {
         </button>
       </div>
 
-      <div id="navigation-bar" className="navbar-menu">
+      <div id="navigation-bar" className={isActive ?"navbar-menu is-active":"navbar-menu"} onClick={() => setIsActive(false)}>
         <div className="navbar-start">
           <Link className="navbar-item" to="/">
             Home
