@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     async function fetchCustomersDetails() {
       try {
-        const data = await axios.get("https://banking-server.herokuapp.com/customers");
+        const data = await axios.get(process.env.React_App_API_KEY + "/customers");
         setCustomersDetails(data.data);
       } catch (err) {
         console.log(err);
@@ -37,7 +37,7 @@ function App() {
     async function fetchTransactionDetails() {
       try {
         const transactionData = await axios.get(
-          "https://banking-server.herokuapp.com/transactions"
+          process.env.React_App_API_KEY + "/transactions"
         );
         setTransactionDetails(transactionData.data);
       } catch (err) {
@@ -179,14 +179,14 @@ function App() {
 
     try {
       const transfer = await axios.put(
-        `https://banking-server.herokuapp.com/customers/${data.from}&${data.to}`,
+        process.env.React_App_API_KEY +`/customers/${data.from}&${data.to}`,
         {
           amount: data.amount,
         }
       );
       if (transfer.status === 200 && !transfer.data.message) {
         const response = await axios.post(
-          "https://banking-server.herokuapp.com/transactions",
+          process.env.React_App_API_KEY + "/transactions",
           data
         );
         if (response.status === 200) {
