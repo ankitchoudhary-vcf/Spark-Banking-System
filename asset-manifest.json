@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Spark-Banking-System/static/css/main.ad398169.chunk.css",
-    "main.js": "/Spark-Banking-System/static/js/main.d550e984.chunk.js",
-    "main.js.map": "/Spark-Banking-System/static/js/main.d550e984.chunk.js.map",
+    "main.js": "/Spark-Banking-System/static/js/main.62d38a9c.chunk.js",
+    "main.js.map": "/Spark-Banking-System/static/js/main.62d38a9c.chunk.js.map",
     "runtime-main.js": "/Spark-Banking-System/static/js/runtime-main.84b21c6f.js",
     "runtime-main.js.map": "/Spark-Banking-System/static/js/runtime-main.84b21c6f.js.map",
     "static/css/2.41953c31.chunk.css": "/Spark-Banking-System/static/css/2.41953c31.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.41953c31.chunk.css",
     "static/js/2.ca281297.chunk.js",
     "static/css/main.ad398169.chunk.css",
-    "static/js/main.d550e984.chunk.js"
+    "static/js/main.62d38a9c.chunk.js"
   ]
 }
