@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     async function fetchCustomersDetails() {
       try {
-        const data = await axios.get(process.env.React_App_API_KEY + "/customers");
+        const data = await axios.get("https://banking-server.herokuapp.com/customers");
         setCustomersDetails(data.data);
       } catch (err) {
         console.log(err);
@@ -37,7 +37,7 @@ function App() {
     async function fetchTransactionDetails() {
       try {
         const transactionData = await axios.get(
-          process.env.React_App_API_KEY + "/transactions"
+         "https://banking-server.herokuapp.com/transactions"
         );
         setTransactionDetails(transactionData.data);
       } catch (err) {
@@ -158,17 +158,20 @@ function App() {
         }
       }
     }
-  }, [from, to, amount, count]);
+    setCount(count + 1);
+  }, [from, to, amount]);
+
 
   // Transfer event handler
   const handleTransfer = async (e) => {
     e.preventDefault();
 
-    setCount(count + 2);
-
     if (!errors.from && !errors.to && !errors.amount && to && from && amount) {
       var process = document.querySelector("#transfer");
       process.classList.add("is-loading");
+    }
+    else{
+      console.error(errors)
     }
 
     const data = {
@@ -177,16 +180,19 @@ function App() {
       amount: parseInt(amount),
     };
 
+    console.log(errors);
+    console.log(data);
+
     try {
       const transfer = await axios.put(
-        process.env.React_App_API_KEY +`/customers/${data.from}&${data.to}`,
+        `https://banking-server.herokuapp.com/customers/${data.from}&${data.to}`,
         {
           amount: data.amount,
         }
       );
       if (transfer.status === 200 && !transfer.data.message) {
         const response = await axios.post(
-          process.env.React_App_API_KEY + "/transactions",
+          "https://banking-server.herokuapp.com/transactions",
           data
         );
         if (response.status === 200) {
