@@ -169,47 +169,46 @@ function App() {
     if (!errors.from && !errors.to && !errors.amount && to && from && amount) {
       var process = document.querySelector("#transfer");
       process.classList.add("is-loading");
-    }
-    else{
-      console.error(errors)
-    }
 
-    const data = {
-      from: parseInt(from),
-      to: parseInt(to),
-      amount: parseInt(amount),
-    };
+      const data = {
+        from: parseInt(from),
+        to: parseInt(to),
+        amount: parseInt(amount),
+      };
 
-    console.log(errors);
-    console.log(data);
-
-    try {
-      const transfer = await axios.put(
-        `https://banking-server.herokuapp.com/customers/${data.from}&${data.to}`,
-        {
-          amount: data.amount,
-        }
-      );
-      if (transfer.status === 200 && !transfer.data.message) {
-        const response = await axios.post(
-          "https://banking-server.herokuapp.com/transactions",
-          data
+      try {
+        const transfer = await axios.put(
+          `https://banking-server.herokuapp.com/customers/${data.from}&${data.to}`,
+          {
+            amount: data.amount,
+          }
         );
-        if (response.status === 200) {
-          process.classList.remove("is-loading");
-          alert(" Transfer Done Successfully !!");
+        if (transfer.status === 200 && !transfer.data.message) {
+          const response = await axios.post(
+            "https://banking-server.herokuapp.com/transactions",
+            data
+          );
+          if (response.status === 200) {
+            process.classList.remove("is-loading");
+            alert(" Transfer Done Successfully !!");
+          } else {
+            process.classList.remove("is-loading");
+            alert(" Transfer Failed, Try again!!");
+          }
         } else {
           process.classList.remove("is-loading");
-          alert(" Transfer Failed, Try again!!");
+          alert(transfer.data.message + " !!");
         }
-      } else {
+      } catch (err) {
         process.classList.remove("is-loading");
-        alert(transfer.data.message + " !!");
+        alert(" Internal Error occurred, Try again after few minutes!!");
       }
-    } catch (err) {
-      process.classList.remove("is-loading");
-      alert(" Internal Error occurred, Try again after few minutes!!");
     }
+    else{
+      alert("Invalid input. Please try!!")
+    }
+
+    
 
     setFrom("Transfer From");
     setTo("Transfer To");
