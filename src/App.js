@@ -16,12 +16,17 @@ function App() {
   //customersDetails
   const [customersDetails, setCustomersDetails] = useState([]);
 
+  // loader
+  const [Customerloading, setCustomerLoading] = useState(false);
+  const [transactionloading, setTransactionLoading] = useState(false);
+
   //fetching the customersDetails
   useEffect(() => {
     async function fetchCustomersDetails() {
       try {
-        const data = await axios.get(process.env.React_App_API_KEY +"/customers");
+        const data = await axios.get("https://banking-server.herokuapp.com/customers");
         setCustomersDetails(data.data);
+        setCustomerLoading(true);
       } catch (err) {
         console.log(err);
       }
@@ -37,9 +42,10 @@ function App() {
     async function fetchTransactionDetails() {
       try {
         const transactionData = await axios.get(
-          process.env.React_App_API_KEY +"/transactions"
+          "https://banking-server.herokuapp.com/transactions"
         );
         setTransactionDetails(transactionData.data);
+        setTransactionLoading(true);
       } catch (err) {
         console.log(err);
       }
@@ -178,14 +184,14 @@ function App() {
 
       try {
         const transfer = await axios.put(
-          process.env.React_App_API_KEY +`/customers/${data.from}&${data.to}`,
+          `https://banking-server.herokuapp.com/customers/${data.from}&${data.to}`,
           {
             amount: data.amount,
           }
         );
         if (transfer.status === 200 && !transfer.data.message) {
           const response = await axios.post(
-           process.env.React_App_API_KEY + "/transactions",
+        "https://banking-server.herokuapp.com/transactions",
             data
           );
           if (response.status === 200) {
@@ -241,10 +247,11 @@ function App() {
               customersDetails={customersDetails}
               setCurrentCustomer={setCurrentCustomer}
               currentCustomer={currentCustomer}
+              loading={Customerloading}
             />
           </Route>
           <Route exact path="/transaction-statements">
-            <TransactionHistory transactionDetails={transactionDetails} />
+            <TransactionHistory loading={transactionloading} transactionDetails={transactionDetails} />
           </Route>
           <Route exact path="/transfer-amount">
             <TransferAmount
@@ -265,6 +272,8 @@ function App() {
               currentCustomer={currentCustomer}
               transactionDetails={transactionDetails}
               setTransfer={setTransfer}
+              loading={transactionloading}
+              customerloading={Customerloading}
             />
           </Route>
           <Route exact path="/about">
