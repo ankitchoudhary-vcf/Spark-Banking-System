@@ -33,17 +33,17 @@ export const Details = (props) => {
 
             style={{display: 'flex'}}
           >
-            <figure class="image is-48x48 mx-1 is-hidden-desktop" data-acc={props.customer.Account_No}>
+            <figure className="image is-48x48 mx-1 is-hidden-desktop" data-acc={props.customer.Account_No}>
               <img
-                class="is-rounded"
+                className="is-rounded"
                 alt="Profile"
                 src={props.customer.Profile}
                 data-acc={props.customer.Account_No}
               />
             </figure>
-            <figure class="image is-96x96 mx-1 is-hidden-touch" data-acc={props.customer.Account_No}>
+            <figure className="image is-96x96 mx-1 is-hidden-touch" data-acc={props.customer.Account_No}>
               <img
-                class="is-rounded"
+                className="is-rounded"
                 alt="Profile"
                 src={props.customer.Profile}
                 data-acc={props.customer.Account_No}
