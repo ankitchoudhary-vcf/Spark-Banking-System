@@ -69,14 +69,15 @@ function App() {
     e.preventDefault();
 
     if (to && from && amount > 0 && to !== from) {
-      var process = document.querySelector("#transfer");
-      process.classList.add("is-loading");
+      var processes = document.querySelector("#transfer");
+      processes.classList.add("is-loading");
 
       const data = {
         from: parseInt(from),
         to: parseInt(to),
         amount: parseInt(amount),
       };
+
 
       try {
         const transfer = await axios.put(
@@ -91,18 +92,18 @@ function App() {
             data
           );
           if (response.status === 200) {
-            process.classList.remove("is-loading");
+            processes.classList.remove("is-loading");
             alert(" Transfer Done Successfully !!");
           } else {
-            process.classList.remove("is-loading");
+            processes.classList.remove("is-loading");
             alert(" Transfer Failed, Try again!!");
           }
         } else {
-          process.classList.remove("is-loading");
+          processes.classList.remove("is-loading");
           alert(transfer.data.message + " !!");
         }
       } catch (err) {
-        process.classList.remove("is-loading");
+        processes.classList.remove("is-loading");
         alert(" Internal Error occurred, Try again after few minutes!!");
       }
     } else {
