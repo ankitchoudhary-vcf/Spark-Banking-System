@@ -6,6 +6,11 @@ import { BeatLoader } from "react-spinners";
 
 
 export const CustomerDetail = (props) => {
+  
+  // loadings
+  const [statementsloading, setStatementsLoading] = useState(false);
+  const [customerloading, setCustomerLoading] = useState(false);
+  
   // Customer Details
   const [customer, setCustomer] = useState([]);
 
@@ -19,6 +24,7 @@ export const CustomerDetail = (props) => {
     async function Customers() {
       var filtered = await props.customersDetails.filter(filteredCustomer);
       setCustomer(filtered);
+      setCustomerLoading(true);
     }
     Customers();
   }, [props.customersDetails]);
@@ -38,7 +44,7 @@ export const CustomerDetail = (props) => {
         FilterStatements
       );
       setStatements(filteredStatements);
-
+      setStatementsLoading(true);
     }
     Statements();
   }, [props.transactionDetails]);
@@ -57,7 +63,7 @@ export const CustomerDetail = (props) => {
         <div className="columns is-centered is-touch">
           <div className="column is-6 is-full-mobile">
             <div className="notification mx-2 is-light title is-size-6-touch is-size-5-desktop has-text-left">
-              {!props.customerloading ? (
+              {!customerloading ? (
                   <BeatLoader loading color="orange" size={48} />
               ):(
                 customer.map((customer) => {
@@ -143,7 +149,7 @@ export const CustomerDetail = (props) => {
             <hr className="has-background-dark" />
           </div>
 
-          {!props.loading ? (
+          {!statementsloading ? (
               <>
               <BeatLoader loading color="orange" size={72} />
               </>
