@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 
 export const TransactionHistory = (props) => {
     
+    const [loading, setLoading] = useState(false);
+
     const [statements, setStatements] = useState([]);
 
     useEffect(() =>{
@@ -15,7 +17,8 @@ export const TransactionHistory = (props) => {
 
         async function Statements() {
             var filtered = await props.transactionDetails.filter(filteredStatements);
-            setStatements(filtered)
+            setStatements(filtered);
+            setLoading(true);
         }
         Statements()
     }, [props.transactionDetails]);
@@ -45,7 +48,7 @@ export const TransactionHistory = (props) => {
           <hr className="has-background-dark" />
         </div>
 
-        {!props.loading ? (
+        {!loading ? (
           <>
             <BeatLoader loading color="orange" size={72} />
           </>
