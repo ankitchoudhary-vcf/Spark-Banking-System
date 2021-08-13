@@ -1,4 +1,12 @@
 import "./App.css";
+import "bulma/css/bulma.min.css";
+import logo from "./favicon.ico";
+import { useState, useEffect } from "react";
+import { HashRouter, Switch, Route } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
+
+import axios from "axios";
+
 import Header from "./Components/Header";
 import Home from "./Components/Home";
 import { Footer } from "./Components/Footer.js";
@@ -7,10 +15,6 @@ import { TransactionHistory } from "./Components/TransactionHistory";
 import { TransferAmount } from "./Components/TransferAmount";
 import { CustomerDetail } from "./Components/CustomerDetail";
 import { About } from "./Components/About";
-import "bulma/css/bulma.min.css";
-import { HashRouter, Switch, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
 function App() {
   //customersDetails
@@ -24,7 +28,9 @@ function App() {
   useEffect(() => {
     async function fetchCustomersDetails() {
       try {
-        const data = await axios.get(process.env.React_App_API_KEY +"/customers");
+        const data = await axios.get(
+          "https://banking-server.herokuapp.com/customers"
+        );
         setCustomersDetails(data.data);
         setCustomerLoading(true);
       } catch (err) {
@@ -42,7 +48,7 @@ function App() {
     async function fetchTransactionDetails() {
       try {
         const transactionData = await axios.get(
-          process.env.React_App_API_KEY +"/transactions"
+          "https://banking-server.herokuapp.com/transactions"
         );
         setTransactionDetails(transactionData.data);
         setTransactionLoading(true);
@@ -54,125 +60,15 @@ function App() {
   }, [transactionDetails]);
 
   // transfer parameters
-  const [from, setFrom] = useState("Transfer From");
-  const [to, setTo] = useState("Transfer To");
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
   const [amount, setAmount] = useState("");
-  const [count, setCount] = useState(0);
-
-  // transfer error parameters
-  const [errors, setError] = useState({});
-
-  useEffect(() => {
-    const data = {
-      from: parseInt(from),
-      to: parseInt(to),
-      amount: parseInt(amount),
-    };
-
-    if (count === 0) {
-      setError({
-        from: false,
-        to: false,
-        amount: false,
-      });
-    } else {
-      if (!data.from) {
-        if (!data.to) {
-          if (!data.amount || !(data.amount > 0)) {
-            const error = {
-              from: true,
-              to: true,
-              amount: true,
-            };
-            setError(error);
-          } else {
-            const error = {
-              from: true,
-              to: true,
-              amount: false,
-            };
-            setError(error);
-          }
-        } else {
-          if (!data.amount || !(data.amount > 0)) {
-            const error = {
-              from: true,
-              to: false,
-              amount: true,
-            };
-            setError(error);
-          } else {
-            const error = {
-              from: true,
-              to: false,
-              amount: false,
-            };
-            setError(error);
-          }
-        }
-      } else {
-        if (!data.to) {
-          if (!data.amount || !(data.amount > 0)) {
-            const error = {
-              from: false,
-              to: true,
-              amount: true,
-            };
-            setError(error);
-          } else {
-            const error = {
-              from: false,
-              to: true,
-              amount: false,
-            };
-            setError(error);
-          }
-        } else {
-          if (data.from === data.to) {
-            if (!data.amount || !(data.amount > 0)) {
-              const error = {
-                from: true,
-                to: true,
-                amount: true,
-              };
-              setError(error);
-            } else {
-              const error = {
-                from: true,
-                to: true,
-                amount: false,
-              };
-              setError(error);
-            }
-          } else {
-            if (!data.amount || !(data.amount > 0)) {
-              const error = {
-                from: false,
-                to: false,
-                amount: true,
-              };
-              setError(error);
-            } else {
-              const error = {
-                from: false,
-                to: false,
-                amount: false,
-              };
-              setError(error);
-            }
-          }
-        }
-      }
-    }
-    setCount(count + 1);
-  }, [from, to, amount]);
-
 
   // Transfer event handler
   const handleTransfer = async (e) => {
     e.preventDefault();
 
-    if (!errors.from && !errors.to && !errors.amount && to && from && amount) {
+    if (to && from && amount > 0 && to !== from) {
       var process = document.querySelector("#transfer");
       process.classList.add("is-loading");
 
@@ -184,14 +80,14 @@ function App() {
 
       try {
         const transfer = await axios.put(
-          process.env.React_App_API_KEY +`/customers/${data.from}&${data.to}`,
+          `https://banking-server.herokuapp.com/customers/${data.from}&${data.to}`,
           {
             amount: data.amount,
           }
         );
         if (transfer.status === 200 && !transfer.data.message) {
           const response = await axios.post(
-           process.env.React_App_API_KEY + "/transactions",
+            "https://banking-server.herokuapp.com/transactions",
             data
           );
           if (response.status === 200) {
@@ -209,17 +105,13 @@ function App() {
         process.classList.remove("is-loading");
         alert(" Internal Error occurred, Try again after few minutes!!");
       }
-    }
-    else{
-      alert("Invalid input. Please try!!")
+    } else {
+      alert("Invalid Amount. Please try!!");
     }
 
-    
-
-    setFrom("Transfer From");
-    setTo("Transfer To");
+    setFrom("");
+    setTo("");
     setAmount("");
-    setCount(0);
   };
 
   // customer variables
@@ -237,50 +129,70 @@ function App() {
   return (
     <>
       <HashRouter>
-        <Header/>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/customs-details">
-            <CustomersDetails
-              customersDetails={customersDetails}
-              setCurrentCustomer={setCurrentCustomer}
-              currentCustomer={currentCustomer}
-              loading={Customerloading}
-            />
-          </Route>
-          <Route exact path="/transaction-statements">
-            <TransactionHistory loading={transactionloading} transactionDetails={transactionDetails} />
-          </Route>
-          <Route exact path="/transfer-amount">
-            <TransferAmount
-              customersDetails={customersDetails}
-              to={to}
-              from={from}
-              setTo={setTo}
-              setAmount={setAmount}
-              setFrom={setFrom}
-              amount={amount}
-              handleTransfer={handleTransfer}
-              error={errors}
-            />
-          </Route>
-          <Route exact path="/customer-details">
-            <CustomerDetail
-              customersDetails={customersDetails}
-              currentCustomer={currentCustomer}
-              transactionDetails={transactionDetails}
-              setTransfer={setTransfer}
-              loading={transactionloading}
-              customerloading={Customerloading}
-            />
-          </Route>
-          <Route exact path="/about">
-          <About/>
-          </Route>
-        </Switch>
-        <Footer />
+        {!transactionloading && !Customerloading ? (
+          <>
+            <div
+              style={{
+                position: "relative",
+                justifyContent: "center",
+                alignItems: "center",
+                top: "40vh",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <img src={logo} alt="logo" />
+              <div style={{ display: "flex" }}>
+                <BeatLoader loading color="orange" size={48} />
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <Header />
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/customs-details">
+                <CustomersDetails
+                  customersDetails={customersDetails}
+                  setCurrentCustomer={setCurrentCustomer}
+                  currentCustomer={currentCustomer}
+                />
+              </Route>
+              <Route exact path="/transaction-statements">
+                <TransactionHistory
+                  transactionDetails={transactionDetails}
+                />
+              </Route>
+              <Route exact path="/transfer-amount">
+                <TransferAmount
+                  customersDetails={customersDetails}
+                  to={to}
+                  from={from}
+                  setTo={setTo}
+                  setAmount={setAmount}
+                  setFrom={setFrom}
+                  amount={amount}
+                  handleTransfer={handleTransfer}
+                />
+              </Route>
+              <Route exact path="/customer-details">
+                <CustomerDetail
+                  customersDetails={customersDetails}
+                  currentCustomer={currentCustomer}
+                  transactionDetails={transactionDetails}
+                  setTransfer={setTransfer}
+                />
+              </Route>
+              <Route exact path="/about">
+                <About />
+              </Route>
+            </Switch>
+            <Footer />
+          </>
+        )}
       </HashRouter>
     </>
   );
