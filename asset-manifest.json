@@ -1,23 +1,24 @@
 {
   "files": {
     "main.css": "/Spark-Banking-System/static/css/main.ad398169.chunk.css",
-    "main.js": "/Spark-Banking-System/static/js/main.8ad8eb07.chunk.js",
-    "main.js.map": "/Spark-Banking-System/static/js/main.8ad8eb07.chunk.js.map",
+    "main.js": "/Spark-Banking-System/static/js/main.a1ee7f2c.chunk.js",
+    "main.js.map": "/Spark-Banking-System/static/js/main.a1ee7f2c.chunk.js.map",
     "runtime-main.js": "/Spark-Banking-System/static/js/runtime-main.84b21c6f.js",
     "runtime-main.js.map": "/Spark-Banking-System/static/js/runtime-main.84b21c6f.js.map",
     "static/css/2.41953c31.chunk.css": "/Spark-Banking-System/static/css/2.41953c31.chunk.css",
-    "static/js/2.52c82f6a.chunk.js": "/Spark-Banking-System/static/js/2.52c82f6a.chunk.js",
-    "static/js/2.52c82f6a.chunk.js.map": "/Spark-Banking-System/static/js/2.52c82f6a.chunk.js.map",
+    "static/js/2.5e84864d.chunk.js": "/Spark-Banking-System/static/js/2.5e84864d.chunk.js",
+    "static/js/2.5e84864d.chunk.js.map": "/Spark-Banking-System/static/js/2.5e84864d.chunk.js.map",
     "index.html": "/Spark-Banking-System/index.html",
     "static/css/2.41953c31.chunk.css.map": "/Spark-Banking-System/static/css/2.41953c31.chunk.css.map",
     "static/css/main.ad398169.chunk.css.map": "/Spark-Banking-System/static/css/main.ad398169.chunk.css.map",
-    "static/js/2.52c82f6a.chunk.js.LICENSE.txt": "/Spark-Banking-System/static/js/2.52c82f6a.chunk.js.LICENSE.txt"
+    "static/js/2.5e84864d.chunk.js.LICENSE.txt": "/Spark-Banking-System/static/js/2.5e84864d.chunk.js.LICENSE.txt",
+    "static/media/favicon.6fa58daf.ico": "/Spark-Banking-System/static/media/favicon.6fa58daf.ico"
   },
   "entrypoints": [
     "static/js/runtime-main.84b21c6f.js",
     "static/css/2.41953c31.chunk.css",
-    "static/js/2.52c82f6a.chunk.js",
+    "static/js/2.5e84864d.chunk.js",
     "static/css/main.ad398169.chunk.css",
-    "static/js/main.8ad8eb07.chunk.js"
+    "static/js/main.a1ee7f2c.chunk.js"
   ]
 }
