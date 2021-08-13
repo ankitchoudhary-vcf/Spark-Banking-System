@@ -1,7 +1,37 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 export const TransferAmount = (props) => {
-  // console.log(props.error)
+
+  // options list
+  const [customersDetailsTo, setCustomersDetailsto] = useState([]);
+  const [customersDetailsFrom, setCustomersDetailsfrom] = useState([]);
+  
+  // Transfer to options list handled
+  useEffect(() => {
+    function filteredCustomer(data) {
+      return data.Account_No !== parseInt(props.from)
+    }
+    async function Customers() {
+      var filtered = await props.customersDetails.filter(filteredCustomer);
+      setCustomersDetailsto(filtered);
+    }
+    Customers();
+  }, [props.customersDetails, props.from]);
+
+  // Transfer From options list handled
+  useEffect(() => {
+    function filteredCustomer(data) {
+      return data.Account_No !== parseInt(props.to)
+    }
+    async function Customers() {
+      var filtered = await props.customersDetails.filter(filteredCustomer);
+      setCustomersDetailsfrom(filtered);
+    }
+    Customers();
+  }, [props.customersDetails, props.to]);
+
+
   return (
     <>
       <div className="mt-6 notification mx-2 is-success is-light title has-text-centered">
@@ -18,49 +48,27 @@ export const TransferAmount = (props) => {
               </div>
               <div className="field-body">
                 <div className="field is-narrow">
-                  {props.error.from ? (
-                    <>
-                      <div className="control">
-                        <div className="select is-fullwidth is-danger">
-                          <select
-                            value={props.from}
-                            onChange={(e) => props.setFrom(e.target.value)}
+                  <div className="control">
+                    <div className="select is-fullwidth">
+                      <select
+                        value={props.from}
+                        onChange={(e) => props.setFrom(e.target.value)}
+                        required
+                      >
+                        <option value="" disabled>
+                          Transfer From
+                        </option>
+                        {customersDetailsFrom.map((customer) => (
+                          <option
+                            key={customer._id}
+                            value={customer.Account_No}
                           >
-                            <option value="Transfer From">Transfer From</option>
-                            {props.customersDetails.map((customer) => (
-                              <option
-                                key={customer._id}
-                                value={customer.Account_No}
-                              >
-                                {customer.Account_Holder} ({customer.Account_No}
-                                )
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                      <p className="help is-danger">Invalid Input</p>
-                    </>
-                  ) : (
-                    <div className="control">
-                      <div className="select is-fullwidth">
-                        <select
-                          value={props.from}
-                          onChange={(e) => props.setFrom(e.target.value)}
-                        >
-                          <option value="Transfer From">Transfer From</option>
-                          {props.customersDetails.map((customer) => (
-                            <option
-                              key={customer._id}
-                              value={customer.Account_No}
-                            >
-                              {customer.Account_Holder} ({customer.Account_No})
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                            {customer.Account_Holder} ({customer.Account_No})
+                          </option>
+                        ))}
+                      </select>
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -71,49 +79,27 @@ export const TransferAmount = (props) => {
               </div>
               <div className="field-body">
                 <div className="field is-narrow">
-                  {props.error.to ? (
-                    <>
-                      <div className="control">
-                        <div className="select is-fullwidth is-danger">
-                          <select
-                            value={props.to}
-                            onChange={(e) => props.setTo(e.target.value)}
+                  <div className="control">
+                    <div className="select is-fullwidth">
+                      <select
+                        value={props.to}
+                        onChange={(e) => props.setTo(e.target.value)}
+                        required
+                      >
+                        <option value="" disabled>
+                          Transfer To
+                        </option>
+                        {customersDetailsTo.map((customer) => (
+                          <option
+                            key={customer._id}
+                            value={customer.Account_No}
                           >
-                            <option value="Transfer To">Transfer To</option>
-                            {props.customersDetails.map((customer) => (
-                              <option
-                                key={customer._id}
-                                value={customer.Account_No}
-                              >
-                                {customer.Account_Holder} ({customer.Account_No}
-                                )
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                      <p className="help is-danger">Invalid Input</p>
-                    </>
-                  ) : (
-                    <div className="control">
-                      <div className="select is-fullwidth">
-                        <select
-                          value={props.to}
-                          onChange={(e) => props.setTo(e.target.value)}
-                        >
-                          <option value="Transfer To">Transfer To</option>
-                          {props.customersDetails.map((customer) => (
-                            <option
-                              key={customer._id}
-                              value={customer.Account_No}
-                            >
-                              {customer.Account_Holder} ({customer.Account_No})
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                            {customer.Account_Holder} ({customer.Account_No})
+                          </option>
+                        ))}
+                      </select>
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -124,32 +110,16 @@ export const TransferAmount = (props) => {
               </div>
               <div className="field-body">
                 <div className="field">
-                  {props.error.amount ? (
-                    <>
-                      <div className="control">
-                        <input
-                          className="input is-danger"
-                          type="number"
-                          placeholder="Enter Amount"
-                          value={props.amount}
-                          onChange={(e) => props.setAmount(e.target.value)}
-                        />
-                      </div>
-                      <p className="help is-danger">Invalid Input</p>
-                    </>
-                  ) : (
-                    <>
-                      <div className="control">
-                        <input
-                          className="input"
-                          type="number"
-                          placeholder="Enter Amount"
-                          value={props.amount}
-                          onChange={(e) => props.setAmount(e.target.value)}
-                        />
-                      </div>
-                    </>
-                  )}
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="number"
+                      placeholder="Enter Amount"
+                      value={props.amount}
+                      onChange={(e) => props.setAmount(e.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
               </div>
             </div>
